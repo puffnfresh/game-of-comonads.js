@@ -93,7 +93,9 @@
         this.unsafePerformIO = unsafePerformIO;
     }
     IO.of = function(o) {
-        return new IO(o);
+        return new IO(function() {
+            return o;
+        });
     };
     IO.prototype.chain = function(f) {
         var io = this;
